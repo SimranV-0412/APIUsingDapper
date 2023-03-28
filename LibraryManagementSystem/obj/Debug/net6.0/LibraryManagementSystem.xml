@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryManagementSystem</name>
+    </assembly>
+    <members>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.AddCategory(LibraryManagementSystem.Models.Category)">
+            <summary>
+            Adding category
+            </summary>
+            <param name="addcategory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.AddAuthor(LibraryManagementSystem.Models.Author)">
+            <summary>
+            Adding author
+            </summary>
+            <param name="addauthor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.AddPublisher(System.Security.Policy.Publisher)">
+            <summary>
+            Adding publisher
+            </summary>
+            <param name="addpublisher"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.AddMember(LibraryManagementSystem.Models.Member)">
+            <summary>
+            Adding member
+            </summary>
+            <param name="addmember"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.AddBook(LibraryManagementSystem.Models.book)">
+            <summary>
+            Adding book
+            </summary>
+            <param name="addbook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.Addissuebook(LibraryManagementSystem.Models.issuebook)">
+            <summary>
+            Adding issuebook data
+            </summary>
+            <param name="addissuebook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.DelMember(System.Int32)">
+            <summary>
+            Delete member data
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetBookDetail(System.Int32)">
+            <summary>
+            Get book detail
+            </summary>
+            <param name="bookId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetissueBookDetail(System.Int32)">
+            <summary>
+            Get Issue Book Detail
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.AddCategory(LibraryManagementSystem.Models.Category)">
+            <summary>
+            Adding category
+            </summary>
+            <param name="addcategory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.AddAuthor(LibraryManagementSystem.Models.Author)">
+            <summary>
+            Adding author
+            </summary>
+            <param name="addauthor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.AddPublisher(LibraryManagementSystem.Models.AddPublisher)">
+            <summary>
+            Adding publisher
+            </summary>
+            <param name="addpublisher"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.AddMember(LibraryManagementSystem.Models.Member)">
+            <summary>
+            Adding member
+            </summary>
+            <param name="addmember"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.AddBook(LibraryManagementSystem.Models.book)">
+            <summary>
+            Adding book
+            </summary>
+            <param name="addbook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.Addissuebook(LibraryManagementSystem.Models.issuebook)">
+            <summary>
+            Adding issue book detail
+            </summary>
+            <param name="addissuebook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.DelMember(System.Int32)">
+            <summary>
+            Delete member
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetBookDetail(System.Int32)">
+            <summary>
+            Get Book Detail
+            </summary>
+            <param name="bookId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetissueBookDetail(System.Int32)">
+            <summary>
+            Get Issue Book Detail
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

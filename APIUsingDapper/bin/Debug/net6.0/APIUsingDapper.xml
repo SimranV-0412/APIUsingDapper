@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>APIUsingDapper</name>
+    </assembly>
+    <members>
+        <member name="M:APIUsingDapper.Controllers.Employee.GetEmployeeData(System.Int32)">
+            <summary>
+            This method is used to get employee based on user id.
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:APIUsingDapper.Controllers.Employee.AddEmployee(APIUsingDapper.Models.AddEmployee)">
+            <summary>
+            This method is used for adding new employee
+            </summary>
+            <param name="addEmployee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:APIUsingDapper.DAL.EmployeeRepo.AddEmployee(APIUsingDapper.Models.AddEmployee)">
+            <summary>
+            This method is used to add employee
+            </summary>
+            <param name="addEmployee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:APIUsingDapper.DAL.EmployeeRepo.GetEmployee(System.Int32)">
+            <summary>
+            This method is get all the employee.
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
