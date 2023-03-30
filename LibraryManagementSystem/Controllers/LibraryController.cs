@@ -83,7 +83,7 @@ namespace LibraryManagementSystem.Controllers
         [HttpPost]
         [Route("AddPublisher")]
 
-        public async Task<IActionResult> AddPublisher(Publisher addpublisher)
+        public async Task<IActionResult> AddPublisher(AddPublisher addpublisher)
         {
             int result = 0;
             try
@@ -220,11 +220,151 @@ namespace LibraryManagementSystem.Controllers
             }
         }
         /// <summary>
-        /// Get book detail
+        /// Delete Category 
         /// </summary>
-        /// <param name="bookId"></param>
+        /// <param name="categoryId"></param>
         /// <returns></returns>
-        [HttpGet]
+		[HttpDelete]
+		[Route("DeleteCategory")]
+		public async Task<IActionResult> DelCategory(int categoryId)
+		{
+			int result = 0;
+			try
+			{
+				result = await _library.DelCategory(categoryId);
+				if (result == 1)
+				{
+					return Ok(result);
+				}
+				else
+				{
+					return BadRequest(result);
+				}
+			}
+			catch (Exception ex)
+			{
+				result = 0;
+				return BadRequest(ex.Message);
+			}
+		}
+        /// <summary>
+        /// Delete Author
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <returns></returns>
+		[HttpDelete]
+		[Route("DeleteAuthor")]
+		public async Task<IActionResult> DelAuthor(int authorId)
+		{
+			int result = 0;
+			try
+			{
+				result = await _library.DelCategory(authorId);
+				if (result == 1)
+				{
+					return Ok(result);
+				}
+				else
+				{
+					return BadRequest(result);
+				}
+			}
+			catch (Exception ex)
+			{
+				result = 0;
+				return BadRequest(ex.Message);
+			}
+		}
+        /// <summary>
+        /// Delete Publisher
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+		[HttpDelete]
+		[Route("DeletePublisher")]
+		public async Task<IActionResult> DelPublisher(int id)
+		{
+			int result = 0;
+			try
+			{
+				result = await _library.DelPublisher(id);
+				if (result == 1)
+				{
+					return Ok(result);
+				}
+				else
+				{
+					return BadRequest(result);
+				}
+			}
+			catch (Exception ex)
+			{
+				result = 0;
+				return BadRequest(ex.Message);
+			}
+		}
+        /// <summary>
+        /// Delete Book
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+		[HttpDelete]
+		[Route("DeleteBook")]
+		public async Task<IActionResult> DelBook(int bookId)
+		{
+			int result = 0;
+			try
+			{
+				result = await _library.DelBook(bookId);
+				if (result == 1)
+				{
+					return Ok(result);
+				}
+				else
+				{
+					return BadRequest(result);
+				}
+			}
+			catch (Exception ex)
+			{
+				result = 0;
+				return BadRequest(ex.Message);
+			}
+		}
+        /// <summary>
+        /// Delete issue book
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+		[HttpDelete]
+		[Route("DeleteIssueBook")]
+		public async Task<IActionResult> DelIssuebook(int Id)
+		{
+			int result = 0;
+			try
+			{
+				result = await _library.DelIssuebook(Id);
+				if (result == 1)
+				{
+					return Ok(result);
+				}
+				else
+				{
+					return BadRequest(result);
+				}
+			}
+			catch (Exception ex)
+			{
+				result = 0;
+				return BadRequest(ex.Message);
+			}
+		}
+		/// <summary>
+		/// Get book detail
+		/// </summary>
+		/// <param name="bookId"></param>
+		/// <returns></returns>
+		[HttpGet]
         [Route("GetBookDetail")]
 
         public async Task<IActionResult> GetBookDetail(int bookId)
@@ -243,24 +383,123 @@ namespace LibraryManagementSystem.Controllers
         /// <summary>
         /// Get Issue Book Detail
         /// </summary>
-        /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("GetissueBookDetail")]
-
-        public async Task<IActionResult> GetissueBookDetail(int Id)
+        public async Task<IActionResult> GetissueBookDetail()
         {
-            issuebook objissuebook = new issuebook();
+            IEnumerable<issuebook> obj = null;
             try
             {
-                objissuebook = await _library.GetissueBookDetail(Id);
+                obj = await _library.GetissueBookDetail();
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            return Ok(objissuebook);
+            return Ok(obj);
         }
 
+        /// <summary>
+        /// Get All books detail
+        /// </summary>
+        /// <returns></returns>
+
+        [HttpGet]
+        [Route("GetAllBookDetail")]
+
+        public async Task<IActionResult> GetAllBookDetail()
+        {
+            IEnumerable<bookAll> obj = null;
+            try
+            {
+                obj = await _library.GetAllBookDetail();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(obj);
+        }
+        /// <summary>
+        /// Get All Category
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetAllCategory")]
+
+        public async Task<IActionResult> GetAllCategoryDetail()
+        {
+            IEnumerable<CategoryAll> obj = null;
+            try
+            {
+                obj = await _library.GetAllCategoryDetail();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(obj);
+        }
+        /// <summary>
+        /// Get All Publisher
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetAllPublisher")]
+
+        public async Task<IActionResult> GetAllPublisher()
+        {
+            IEnumerable<AllPublisher> obj = null;
+            try
+            {
+                obj = await _library.GetAllPublisher();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(obj);
+        }
+        /// <summary>
+        /// Get All Author
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetAllAuthor")]
+
+        public async Task<IActionResult> GetAllAuthor()
+        {
+            IEnumerable<AuthorAll> obj = null;
+            try
+            {
+                obj = await _library.GetAllAuthor();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(obj);
+        }
+        /// <summary>
+        /// Get All Member
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetAllMemberDetail")]
+
+        public async Task<IActionResult> GetAllMemberDetail()
+        {
+            IEnumerable<AllMember> obj = null;
+            try
+            {
+                obj = await _library.GetAllMemberDetail();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(obj);
+        }
     }
 }

@@ -18,7 +18,7 @@
             <param name="addauthor"></param>
             <returns></returns>
         </member>
-        <member name="M:LibraryManagementSystem.Controllers.LibraryController.AddPublisher(System.Security.Policy.Publisher)">
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.AddPublisher(LibraryManagementSystem.Models.AddPublisher)">
             <summary>
             Adding publisher
             </summary>
@@ -53,6 +53,41 @@
             <param name="Id"></param>
             <returns></returns>
         </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.DelCategory(System.Int32)">
+            <summary>
+            Delete Category 
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.DelAuthor(System.Int32)">
+            <summary>
+            Delete Author
+            </summary>
+            <param name="authorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.DelPublisher(System.Int32)">
+            <summary>
+            Delete Publisher
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.DelBook(System.Int32)">
+            <summary>
+            Delete Book
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.DelIssuebook(System.Int32)">
+            <summary>
+            Delete issue book
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
         <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetBookDetail(System.Int32)">
             <summary>
             Get book detail
@@ -60,11 +95,40 @@
             <param name="bookId"></param>
             <returns></returns>
         </member>
-        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetissueBookDetail(System.Int32)">
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetissueBookDetail">
             <summary>
             Get Issue Book Detail
             </summary>
-            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetAllBookDetail">
+            <summary>
+            Get All books detail
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetAllCategoryDetail">
+            <summary>
+            Get All Category
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetAllPublisher">
+            <summary>
+            Get All Publisher
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetAllAuthor">
+            <summary>
+            Get All Author
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.Controllers.LibraryController.GetAllMemberDetail">
+            <summary>
+            Get All Member
+            </summary>
             <returns></returns>
         </member>
         <member name="M:LibraryManagementSystem.DAL.LibraryRepo.AddCategory(LibraryManagementSystem.Models.Category)">
@@ -116,6 +180,41 @@
             <param name="Id"></param>
             <returns></returns>
         </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.DelAuthor(System.Int32)">
+            <summary>
+            Delete Author
+            </summary>
+            <param name="authorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.DelPublisher(System.Int32)">
+            <summary>
+            Deleting publisher
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.DelCategory(System.Int32)">
+            <summary>
+            Delete Category
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.DelBook(System.Int32)">
+            <summary>
+            Delete Book
+            </summary>
+            <param name="bookId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.DelIssuebook(System.Int32)">
+            <summary>
+            Delete issue book
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
         <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetBookDetail(System.Int32)">
             <summary>
             Get Book Detail
@@ -123,11 +222,40 @@
             <param name="bookId"></param>
             <returns></returns>
         </member>
-        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetissueBookDetail(System.Int32)">
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetissueBookDetail">
             <summary>
             Get Issue Book Detail
             </summary>
-            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetAllBookDetail">
+            <summary>
+            Get All Books detail
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetAllPublisher">
+            <summary>
+            Get All Publisher
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetAllCategoryDetail">
+            <summary>
+            Get All Category 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetAllAuthor">
+            <summary>
+            Get All Author
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.GetAllMemberDetail">
+            <summary>
+            Get All Member Detail
+            </summary>
             <returns></returns>
         </member>
     </members>

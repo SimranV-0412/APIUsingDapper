@@ -147,7 +147,7 @@ namespace LibraryManagementSystem.DAL
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
-                    var procedure = "AddMember";
+                    var procedure = "AddBook";
                     var values = new
                     {
                         bookName = addbook.bookName,
@@ -183,8 +183,7 @@ namespace LibraryManagementSystem.DAL
                     {
                         memberId = addissuebook.memberId,
                         bookId = addissuebook.bookId,
-                        issuedate = addissuebook.issuedate,
-                        returndate = addissuebook.returndate,
+                        Rdate = addissuebook.Rdate,
                     };
                     result = connection.QueryFirst<int>(procedure, values, commandType: CommandType.StoredProcedure);
                 }
@@ -197,10 +196,7 @@ namespace LibraryManagementSystem.DAL
         }
 
 
-        public Task<int> AddPublisher(Publisher addpublisher)
-        {
-            throw new NotImplementedException();
-        }
+        
         /// <summary>
         /// Delete member
         /// </summary>
@@ -229,11 +225,141 @@ namespace LibraryManagementSystem.DAL
             }
         }
         /// <summary>
-        /// Get Book Detail
+        /// Delete Author
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <returns></returns>
+		public async Task<int> DelAuthor(int authorId)
+		{
+			int result = 0;
+			try
+			{
+				using (var connection = new MySqlConnection(_connectionString))
+				{
+					var procedure = "DeleteAuthor";
+					var values = new
+					{
+						authorId = authorId
+					};
+					result = connection.QueryFirst<int>(procedure, values, commandType: CommandType.StoredProcedure);
+				}
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return 0;
+			}
+		}
+        /// <summary>
+        /// Deleting publisher
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+		public async Task<int> DelPublisher(int id)
+		{
+			int result = 0;
+			try
+			{
+				using (var connection = new MySqlConnection(_connectionString))
+				{
+					var procedure = "DeletePublisher";
+					var values = new
+					{
+						id = id
+					};
+					result = connection.QueryFirst<int>(procedure, values, commandType: CommandType.StoredProcedure);
+				}
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return 0;
+			}
+		}
+		/// <summary>
+		/// Delete Category
+		/// </summary>
+		/// <param name="categoryId"></param>
+		/// <returns></returns>
+		public async Task<int> DelCategory(int categoryId)
+		{
+			int result = 0;
+			try
+			{
+				using (var connection = new MySqlConnection(_connectionString))
+				{
+					var procedure = "DeleteCategory";
+					var values = new
+					{
+						categoryId = categoryId
+					};
+					result = connection.QueryFirst<int>(procedure, values, commandType: CommandType.StoredProcedure);
+				}
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return 0;
+			}
+		}
+        /// <summary>
+        /// Delete Book
         /// </summary>
         /// <param name="bookId"></param>
         /// <returns></returns>
-        public async Task<book> GetBookDetail(int bookId)
+		public async Task<int> DelBook(int bookId)
+		{
+			int result = 0;
+			try
+			{
+				using (var connection = new MySqlConnection(_connectionString))
+				{
+					var procedure = "DeleteBook";
+					var values = new
+					{
+						bookId = bookId
+					};
+					result = connection.QueryFirst<int>(procedure, values, commandType: CommandType.StoredProcedure);
+				}
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return 0;
+			}
+		}
+        /// <summary>
+        /// Delete issue book
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+		public async Task<int> DelIssuebook(int Id)
+		{
+			int result = 0;
+			try
+			{
+				using (var connection = new MySqlConnection(_connectionString))
+				{
+					var procedure = "DeleteIssuebook";
+					var values = new
+					{
+						Id = Id
+					};
+					result = connection.QueryFirst<int>(procedure, values, commandType: CommandType.StoredProcedure);
+				}
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return 0;
+			}
+		}
+		/// <summary>
+		/// Get Book Detail
+		/// </summary>
+		/// <param name="bookId"></param>
+		/// <returns></returns>
+		public async Task<book> GetBookDetail(int bookId)
         {
             
             book objbook = new book();
@@ -258,29 +384,129 @@ namespace LibraryManagementSystem.DAL
         /// <summary>
         /// Get Issue Book Detail
         /// </summary>
-        /// <param name="Id"></param>
         /// <returns></returns>
-        public async Task<issuebook> GetissueBookDetail(int Id)
+        public async Task<IEnumerable<issuebook>> GetissueBookDetail()
         {
-
-            issuebook objissuebook = new issuebook();
+            IEnumerable<issuebook> obj = null;
             try
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     var procedure = "GetBookIssue";
-                    var values = new
-                    {
-                        Id = Id
-                    };
-                    objissuebook = connection.QueryFirst<issuebook>(procedure, values, commandType: CommandType.StoredProcedure);
+                    obj = await connection.QueryAsync<issuebook>(procedure, null, commandType: CommandType.StoredProcedure);
                 }
-                return objissuebook;
+                return obj.ToList();
             }
             catch (Exception ex)
             {
-                return objissuebook;
+                return null;
             }
         }
+        /// <summary>
+        /// Get All Books detail
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<bookAll>> GetAllBookDetail()
+        {
+            IEnumerable<bookAll> obj = null;
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var procedure = "GetAllBook";
+                    obj = await connection.QueryAsync<bookAll>(procedure, null, commandType: CommandType.StoredProcedure);
+                }
+                return obj.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Get All Publisher
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<AllPublisher>> GetAllPublisher()
+        {
+            IEnumerable<AllPublisher> obj = null;
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var procedure = "GetAllPublisher";
+                    obj = await connection.QueryAsync<AllPublisher>(procedure, null, commandType: CommandType.StoredProcedure);
+                }
+                return obj.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Get All Category 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<CategoryAll>> GetAllCategoryDetail()
+        {
+            IEnumerable<CategoryAll> obj = null;
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var procedure = "GetAllCategory";
+                    obj = await connection.QueryAsync<CategoryAll>(procedure, null, commandType: CommandType.StoredProcedure);
+                }
+                return obj.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Get All Author
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<AuthorAll>> GetAllAuthor()
+        {
+            IEnumerable<AuthorAll> obj = null;
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var procedure = "GetAllAuthor";
+                    obj = await connection.QueryAsync<AuthorAll>(procedure, null, commandType: CommandType.StoredProcedure);
+                }
+                return obj.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Get All Member Detail
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<AllMember>> GetAllMemberDetail()
+        {
+            IEnumerable<AllMember> obj = null;
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var procedure = "GetAllMember";
+                    obj = await connection.QueryAsync<AllMember>(procedure, null, commandType: CommandType.StoredProcedure);
+                }
+                return obj.ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }
