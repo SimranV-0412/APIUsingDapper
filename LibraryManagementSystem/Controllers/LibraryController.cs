@@ -2,13 +2,16 @@
 using APIUsingDapper.Models;
 using LibraryManagementSystem.DAL.Interface;
 using LibraryManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mysqlx;
 using System.Security.Policy;
 
 namespace LibraryManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LibraryController : ControllerBase
     {
         public readonly ILibrary _library;
@@ -17,6 +20,7 @@ namespace LibraryManagementSystem.Controllers
 
             _library = library;
         }
+
         /// <summary>
         /// Adding category
         /// </summary>
@@ -501,5 +505,52 @@ namespace LibraryManagementSystem.Controllers
             }
             return Ok(obj);
         }
+
+        ///// <summary>
+        ///// checking password
+        ///// </summary>
+        ///// <param name="loginAdmin"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //[Route("loginAdmin")]
+        //public async Task<IActionResult> LoginAdmin(loginAdmin loginAdmin)
+        //{
+        //    int result;
+        //    try
+        //    {
+        //        result = await _library.LoginAdmin(loginAdmin);
+        //        if (result == 1)
+        //        {
+        //            return Ok("Values are inserted");
+        //        }
+        //        else
+        //        {
+        //            return BadRequest("Something went wrong");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = 0;
+        //        return BadRequest(ex.Message);
+        //    }
+
+        //}
+
+        //public async Task<IActionResult> LoginAdmin(loginAdmin loginAdmin)
+        //{
+        //    TokenModel tokenModel = new TokenModel();
+        //    //int result;
+        //    try
+        //    {
+        //        tokenModel = await _library.LoginAdmin(loginAdmin);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //result = 0;
+        //        return BadRequest(ex.Message);
+        //    }
+        //    return Ok(tokenModel);
+        //}
+
     }
 }

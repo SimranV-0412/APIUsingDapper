@@ -1,4 +1,6 @@
-﻿namespace LibraryManagementSystem.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LibraryManagementSystem.Models
 {
     public class Category
     {
@@ -83,4 +85,21 @@
         public DateTime? Rdate { get; set; }
 
     }
+    public class loginAdmin
+    {
+        [EmailAddress]
+        [Required(ErrorMessage = "Email is required")]
+        public string? email { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        public string? adminPassword { get; set; }
+    }
+
+    public class TokenModel
+    {
+        public string? token { get; set; }
+        public DateTime? expires { get; set; }
+        public string email { get; set; }
+    }
+
 }

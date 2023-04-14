@@ -2,10 +2,14 @@
 using LibraryManagementSystem.DAL.Interface;
 using LibraryManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using MySqlConnector;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Policy;
+using System.Text;
 
 namespace LibraryManagementSystem.DAL
 {
@@ -507,6 +511,100 @@ namespace LibraryManagementSystem.DAL
                 return null;
             }
         }
+        /// <summary>
+        /// login by admin
+        /// </summary>
+        /// <param name="loginAdmin"></param>
+        /// <returns></returns>
+
+        //public async Task<int> LoginAdmin(loginAdmin loginAdmin)
+        //{
+        //    int result = 0;
+        //    try
+        //    {
+        //        using (var connection = new MySqlConnection(_connectionString))
+        //        {
+        //            var procedure = "checkPassword";
+        //            var values = new
+        //            {
+        //                email = loginAdmin.email,
+        //                adminPassword = loginAdmin.adminPassword
+        //            };
+        //            result = await connection.QueryFirstAsync<int>(procedure, values, commandType: CommandType.StoredProcedure);
+        //        }
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return 0;
+        //    }
+        //}
+
+        public async Task<TokenModel> LoginAdmin(loginAdmin loginAdmin)
+        {
+            TokenModel tokenModel = new TokenModel();
+            string result;
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var procedure = "checkPassword";
+                    var values = new
+                    {
+                        email = loginAdmin.email,
+                        adminPassword = loginAdmin.adminPassword
+                    };
+                    result = await connection.QueryFirstAsync<string>(procedure, values, commandType: CommandType.StoredProcedure);
+                }
+                if (result != null)
+                {
+                    var claims = new[] {
+                        new Claim(ClaimTypes.Email,loginAdmin.email.ToString())
+                    };
+                    string k = _config["Jwt:Key"];
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+                    var token = new JwtSecurityToken(
+                        _config["Jwt:Issuer"],
+                        _config["Jwt:Audience"],
+                        claims,
+                        expires: DateTime.UtcNow.AddMinutes(20),
+                        signingCredentials: signIn);
+
+                    // Generate the JWT token string
+                    var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
+
+                    tokenModel.token = jwtToken;//token.ToString();
+                    tokenModel.email = loginAdmin.email;
+                    tokenModel.expires = token.ValidTo;
+
+                    return tokenModel;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 }
+
+                    //var tokenHandler = new JwtSecurityTokenHandler();
+                    //var securitykey = Encoding.UTF8.GetBytes(_config["Jwt:key"]);
+                    //var tokenDescriptor = new SecurityTokenDescriptor
+                    //{
+                    //    Subject = new ClaimsIdentity(new Claim[]
+                    //    {
+                    //        new Claim(ClaimTypes.Email,loginAdmin.email.ToString())
+                    //    }),
+                    //    //Expires = DateTime.UtcNow,
+                    //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(securitykey),
+                    //    SecurityAlgorithms.HmacSha256Signature)
+                    //};
+                    //var token = tokenHandler.CreateToken(tokenDescriptor);

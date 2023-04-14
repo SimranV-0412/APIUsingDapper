@@ -131,6 +131,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:LibraryManagementSystem.Controllers.LoginAdminController.LoginAdmin(LibraryManagementSystem.Models.loginAdmin)">
+            <summary>
+             checking password
+             </summary>
+             <param name="loginAdmin"></param>
+             <returns></returns>
+        </member>
         <member name="M:LibraryManagementSystem.DAL.LibraryRepo.AddCategory(LibraryManagementSystem.Models.Category)">
             <summary>
             Adding category
@@ -256,6 +263,13 @@
             <summary>
             Get All Member Detail
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryManagementSystem.DAL.LibraryRepo.LoginAdmin(LibraryManagementSystem.Models.loginAdmin)">
+            <summary>
+            login by admin
+            </summary>
+            <param name="loginAdmin"></param>
             <returns></returns>
         </member>
     </members>

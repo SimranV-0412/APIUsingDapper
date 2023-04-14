@@ -25,7 +25,9 @@ namespace LibraryManagementSystem.DAL.Interface
         public Task<IEnumerable<CategoryAll>> GetAllCategoryDetail();
         public Task<IEnumerable<AllPublisher>> GetAllPublisher();
         public Task<IEnumerable<AuthorAll>> GetAllAuthor();
-
         public Task<IEnumerable<AllMember>> GetAllMemberDetail();
+
+        //public Task<int> LoginAdmin (loginAdmin loginAdmin);
+        public Task<TokenModel> LoginAdmin(loginAdmin loginAdmin);
     }
 }
